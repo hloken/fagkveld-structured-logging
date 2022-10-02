@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7F208F1D-7540-482B-A80D-2C64452FF8F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService", "src\InventoryService\InventoryService.csproj", "{66A42FFA-C26C-497F-87E7-5DA2B5DC0D7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "src\OrderService\OrderService.csproj", "{FB650820-3E64-4D4D-861B-759B4E95E18B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66A42FFA-C26C-497F-87E7-5DA2B5DC0D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66A42FFA-C26C-497F-87E7-5DA2B5DC0D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66A42FFA-C26C-497F-87E7-5DA2B5DC0D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66A42FFA-C26C-497F-87E7-5DA2B5DC0D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB650820-3E64-4D4D-861B-759B4E95E18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB650820-3E64-4D4D-861B-759B4E95E18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB650820-3E64-4D4D-861B-759B4E95E18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB650820-3E64-4D4D-861B-759B4E95E18B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66A42FFA-C26C-497F-87E7-5DA2B5DC0D7D} = {7F208F1D-7540-482B-A80D-2C64452FF8F5}
+		{FB650820-3E64-4D4D-861B-759B4E95E18B} = {7F208F1D-7540-482B-A80D-2C64452FF8F5}
+	EndGlobalSection
+EndGlobal

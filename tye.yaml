@@ -1,0 +1,19 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: structured-logging
+services:
+  - name: orders
+    project: src/OrderService/OrderService.csproj
+    bindings:
+      - name: http
+        protocol: http
+        port: 5000
+      - name: https
+        protocol: https
+        port: 5001
+  - name: inventory
+    project: src/InventoryService/InventoryService.csproj
