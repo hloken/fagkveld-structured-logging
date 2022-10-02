@@ -27,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Test comment
 app.UseHttpsRedirection();
 
 app.MapPost("/place-order", async ([FromBody]PlaceOrderRequest request, ILogger<Program> logger) =>
