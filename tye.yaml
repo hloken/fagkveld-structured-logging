@@ -5,6 +5,11 @@
 #    https://aka.ms/AA7q20u
 #
 name: structured-logging
+
+extensions:
+  - name: seq
+    logPath: /c/temp/seq
+
 services:
   - name: orders
     project: src/OrderService/OrderService.csproj
@@ -17,3 +22,12 @@ services:
         port: 5001
   - name: inventory
     project: src/InventoryService/InventoryService.csproj
+#  - name: seq
+#    image: datalust/seq
+#    env:
+#      - ACCEPT_EULA="Y"
+#    bindings:
+#      - port: 5341
+#    volumes:
+#      - source: /c/temp/seq
+#        target: /data

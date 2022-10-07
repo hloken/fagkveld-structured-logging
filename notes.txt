@@ -1,0 +1,37 @@
+Fagkveld - Structured Logging
+=============================
+
+Intro
+-----
+
+
+Logging classic
+---------------
+- Text-only
+- Console/Files
+
+Structured logging
+------------------
+- No "messages"
+- Message templates
+- Named properties/objects(?)
+
+Using structured logging
+------------------------
+- be consistent in use of message templates
+- de-structuring objects
+- scopes
+- VS extension/Rider inspector
+- don't log exception message as property, it's already part of exception
+- bootstrap-logger
+
+Some examples in test project
+-----------------------------
+
+Aggregated logging - demo in Seq
+--------------------------------
+
+Beyond structured logging
+-------------------------
+- DataDog: better UI, monitoring
+

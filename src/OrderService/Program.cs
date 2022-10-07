@@ -1,50 +1,53 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderService;
+using OrderService.Contracts;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var defaultInventoryUri = "https://localhost:5003";
+// Serilog configuration
+builder.Logging.ClearProviders(); // remove default logging providers
 
+using var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.WithProperty("ApplicationName", "Orders")
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Logging.AddSerilog(logger);
+
+// Configure Inventory client
+var defaultInventoryUri = "https://localhost:5003";
 var inventoryUri = builder.Configuration.GetServiceUri("inventory", "https")
                      ?? new Uri(defaultInventoryUri);
-
 builder.Services.AddHttpClient<InventoryClient>(client =>
 {
     client.BaseAddress = inventoryUri;
 });
+logger.Information("{ServiceClientName} is configured at URL {ServiceURL}", nameof(InventoryClient), inventoryUri);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+// Build the app
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-// Test comment
 app.UseHttpsRedirection();
 
-app.MapPost("/place-order", async ([FromBody]PlaceOrderRequest request, ILogger<Program> logger) =>
+// The routes
+app.MapPost("/place-order", async ([FromBody] PlaceOrderRequest request, ILogger<Program> logger) =>
 {
     // Validation
     if (string.IsNullOrWhiteSpace(request.ItemName))
     {
         logger.LogError("Order placed with empty item-name: {Request}", request);
-        
-        return  new PlaceOrderResponse(false, Guid.Empty, "Order placed with empty item-name");
+
+        return new PlaceOrderResponse(false, Guid.Empty, "Order placed with empty item-name");
     }
 
     // Notifying inventory
     // ...and handling problems
-    
-    return new PlaceOrderResponse(true, Guid.NewGuid(), "Order places successfully");
+
+    return new PlaceOrderResponse(true, Guid.NewGuid(), "Order placed successfully");
 })
 .WithName("PlaceOrder");
 
-app.Run();
+
+
+await app.RunAsync();

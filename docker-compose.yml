@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  elaway:
+    name: elaway
+    driver: bridge
+
+services:
+  seq:
+    container_name: seq
+    image: datalust/seq
+    ports:
+      - '5341:80'
+    #      - 80:80
+    #      - 5341:5341
+    volumes:
+      - /c/temp/seq:/data
+    environment:
+      ACCEPT_EULA: "Y"
+    networks:
+      elaway:
