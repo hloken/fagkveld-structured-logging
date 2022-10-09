@@ -1,5 +1,5 @@
 namespace OrderService.Contracts;
 
-public record struct PlaceOrderRequest(
+public record PlaceOrderRequest(
     string ItemName,
     int NumberOfItems);

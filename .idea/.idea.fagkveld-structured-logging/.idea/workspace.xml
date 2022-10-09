@@ -13,25 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2c07b-7c28-4fe0-b6e7-782545bf24f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.fagkveld-structured-logging/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InventoryService/Contracts/OrderPlacedResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OrderService/Contracts/PlaceOrderRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.fagkveld-structured-logging/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.fagkveld-structured-logging/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.fagkveld-structured-logging/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.fagkveld-structured-logging/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fagkveld-structured-logging.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Fagkveld.StructuredLogging.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InventoryService/Contracts/Messages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/InventoryService/Contracts/OrderPlacedRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InventoryService/InventoryService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/InventoryService/InventoryService.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InventoryService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/InventoryService/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InventoryService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/InventoryService/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderService/Contracts/Message.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderService/Contracts/PlaceOrderResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderService/OrderService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderService/OrderService.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderService/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderService/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tye.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tye.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.fagkveld-structured-logging/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.fagkveld-structured-logging/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +156,7 @@
       <updated>1664726202763</updated>
       <workItem from="1664726209464" duration="451000" />
       <workItem from="1664726765225" duration="3324000" />
-      <workItem from="1665136520228" duration="5597000" />
+      <workItem from="1665136520228" duration="6494000" />
     </task>
     <servers />
   </component>

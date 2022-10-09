@@ -1,6 +1,6 @@
 namespace OrderService.Contracts;
 
-public record struct PlaceOrderResponse(
+public record PlaceOrderResponse(
     bool Success,
     Guid OrderId,
     string ErrorMessage

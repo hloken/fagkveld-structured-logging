@@ -1,53 +1,41 @@
 using Microsoft.AspNetCore.Mvc;
-using OrderService;
 using OrderService.Contracts;
-using Serilog;
+using OrderService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Serilog configuration
-builder.Logging.ClearProviders(); // remove default logging providers
-
-using var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.WithProperty("ApplicationName", "Orders")
-    .Enrich.FromLogContext()
-    .CreateLogger();
-
-builder.Logging.AddSerilog(logger);
+var logger = builder.AddLogging("orders");
 
 // Configure Inventory client
-var defaultInventoryUri = "https://localhost:5003";
-var inventoryUri = builder.Configuration.GetServiceUri("inventory", "https")
-                     ?? new Uri(defaultInventoryUri);
-builder.Services.AddHttpClient<InventoryClient>(client =>
-{
-    client.BaseAddress = inventoryUri;
-});
-logger.Information("{ServiceClientName} is configured at URL {ServiceURL}", nameof(InventoryClient), inventoryUri);
+var inventoryUri = builder.ConfigureInventoryHttpClient(logger);
 
 // Build the app
 var app = builder.Build();
 app.UseHttpsRedirection();
 
-// The routes
-app.MapPost("/place-order", async ([FromBody] PlaceOrderRequest request, ILogger<Program> logger) =>
+// Place Order
+app.MapPost("/place-order", async ([FromBody] PlaceOrderRequest request, InventoryClient inventoryService, HttpContext ctx, ILogger<Program> logger) => 
 {
+    var orderId = Guid.NewGuid();
+    
     // Validation
     if (string.IsNullOrWhiteSpace(request.ItemName))
     {
-        logger.LogError("Order placed with empty item-name: {Request}", request);
-
-        return new PlaceOrderResponse(false, Guid.Empty, "Order placed with empty item-name");
+        logger.LogError("Order placed with empty item-name: {RequestContent}", request);
+        return Results.BadRequest(new PlaceOrderResponse(false, Guid.Empty, "Order placed with empty item-name"));
     }
 
-    // Notifying inventory
-    // ...and handling problems
+    // Checking with inventory
+    var success = await inventoryService.ReserveItems(request.ItemName, request.NumberOfItems, ctx.RequestAborted);
+    if (!success)
+    {
+        logger.LogInformation("Cannot place order, inventory-service could not reserve items for {OrderId}, item: {ItemName} Quantity: {NumberOfItems}",
+            orderId, request.ItemName, request.NumberOfItems);
+        return Results.BadRequest(new PlaceOrderResponse(false, orderId, "Inventory says no"));
+    }
 
-    return new PlaceOrderResponse(true, Guid.NewGuid(), "Order placed successfully");
-})
-.WithName("PlaceOrder");
-
-
+    return Results.Accepted(value: new PlaceOrderResponse(true, orderId, string.Empty));
+});
 
 await app.RunAsync();
