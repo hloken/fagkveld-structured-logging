@@ -35,6 +35,9 @@ app.MapPost("/place-order", async ([FromBody] PlaceOrderRequest request, Invento
         return Results.BadRequest(new PlaceOrderResponse(false, orderId, "Inventory says no"));
     }
 
+    logger.LogInformation("Successfully placed order {OrderId} for item: {ItemName}, quantity: {NumberOfItems}",
+        orderId, request.ItemName, request.NumberOfItems);
+    
     return Results.Accepted(value: new PlaceOrderResponse(true, orderId, string.Empty));
 });
 

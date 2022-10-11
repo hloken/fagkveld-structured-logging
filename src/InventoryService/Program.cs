@@ -2,7 +2,6 @@ using InventoryService;
 using InventoryService.Contracts;
 using InventoryService.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 
 var inventoryRepository = new InventoryRepository
 {
