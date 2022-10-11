@@ -16,9 +16,7 @@ var inventoryRepository = new InventoryRepository
 var builder = WebApplication.CreateBuilder(args);
 
 // Serilog configuration
-builder.Logging.ClearProviders(); // remove default logging providers
-var logger = Logging.CreateLogger(builder.Configuration, "Inventory");
-builder.Logging.AddSerilog(logger);
+builder.AddLogging("inventory");
 
 // Add inventory
 builder.Services.AddSingleton<InventoryRepository>(inventoryRepository);

@@ -18,7 +18,7 @@ app.UseHttpsRedirection();
 app.MapPost("/place-order", async ([FromBody] PlaceOrderRequest request, InventoryClient inventoryService, HttpContext ctx, ILogger<Program> logger) => 
 {
     var orderId = Guid.NewGuid();
-    
+
     // Validation
     if (string.IsNullOrWhiteSpace(request.ItemName))
     {
