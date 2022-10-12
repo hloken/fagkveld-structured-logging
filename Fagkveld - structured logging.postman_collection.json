@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "c03acef5-186b-4df7-a719-3cb2bb65efe5",
+		"name": "Fagkveld - structured logging",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3023"
+	},
+	"item": [
+		{
+			"name": "OrderService - PlaceOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"itemName\": \"ice-cream\",\r\n    \"numberOfItems\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/place-order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"place-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderService - PlaceOrder - empty body",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/place-order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"place-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderService - PlaceOrder with validation error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"itemName\": \"\",\r\n    \"numberOfItems\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/place-order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"place-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InventoryService - ReserveItems - empty body",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5003/reserve-items",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"reserve-items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InventoryService - ReserveItems",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderId\": \"{{$guid}}\",\r\n    \"itemName\": \"ice-cream\",\r\n    \"numberOfItems\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5003/reserve-items",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"reserve-items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InventoryService - GetAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderId\": \"{{$guid}}\",\r\n    \"itemName\": \"ice-cream\",\r\n    \"numberOfItems\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5003/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
