@@ -20,12 +20,13 @@ public class InventoryClient
         _logger = logger;
     }
 
-    public async Task<bool> ReserveItems(string itemName, int numberOfItems, CancellationToken cancellationToken)
+    public async Task<bool> ReserveItems(string itemName, int numberOfItems, Guid orderId, CancellationToken cancellationToken)
     {
         var requestContent = new ReserveItemsRequest
         {
             ItemName = itemName,
-            NumberOfItems = numberOfItems
+            NumberOfItems = numberOfItems,
+            OrderId = orderId
         };
 
         var (status, responseContent) = await SendInternal<ReserveItemsRequest, ReserveItemsResponse>(
@@ -33,12 +34,13 @@ public class InventoryClient
 
         if (IsSuccessStatusCode(status))
         {
+            _logger.LogInformation("Call to InventoryService->ReserveItems was successfull: {StatusCode}", status);
             return true;
         }
         else
         {
-            _logger.LogError("Call to InventoryService->ReserveItems failed: {StatusCode} {RequestContent} {ResponseContent}", status, requestContent, responseContent);
-            throw new HttpRequestException(null, null, status);
+            _logger.LogWarning("Call to InventoryService->ReserveItems failed: {StatusCode} {RequestContent} {ResponseContent}", status, requestContent, responseContent);
+            return false;
         }
     }
 
